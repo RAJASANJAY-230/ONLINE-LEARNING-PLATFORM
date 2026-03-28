@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EduLearn Platform</title>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:whitesmoke;
+}
+
+header{
+background:darkslategray;
+color:white;
+padding:15px;
+text-align:center;
+}
+
+nav{
+background:slategray;
+padding:10px;
+text-align:center;
+}
+
+nav button{
+padding:10px 20px;
+margin:5px;
+border:none;
+background:dodgerblue;
+color:white;
+cursor:pointer;
+}
+
+nav button:hover{
+background:steelblue;
+}
+
+.section{
+display:none;
+padding:20px;
+}
+
+.active{
+display:block;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:8px;
+box-shadow:0 0 10px lightgray;
+}
+
+input{
+padding:8px;
+margin:5px;
+}
+
+button{
+padding:10px;
+}
+
+.quiz-option{
+display:block;
+margin:5px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>EduLearn - Online Learning Platform</h1>
+</header>
+
+<nav>
+<button onclick="showSection('login')">Login</button>
+<button onclick="showSection('ebooks')">E-Books</button>
+<button onclick="showSection('mocktest')">Mock Test</button>
+<button onclick="showSection('quiz')">Quiz</button>
+<button onclick="showSection('classes')">Classes</button>
+</nav>
+
+<!-- LOGIN -->
+<div id="login" class="section active">
+<div class="card">
+<h2>Student Login</h2>
+
+<input type="text" id="username" placeholder="Username"><br>
+<input type="password" id="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<p id="loginMsg"></p>
+</div>
+</div>
+
+<!-- EBOOKS -->
+<div id="ebooks" class="section">
+<h2>Available E-Books</h2>
+
+<div class="card">Physics Fundamentals PDF</div>
+<div class="card">Java Programming Basics</div>
+<div class="card">Mathematics for Engineers</div>
+
+</div>
+
+<!-- MOCK TEST -->
+<div id="mocktest" class="section">
+<h2>Mock Test</h2>
+
+<div class="card">
+<p>1. Java is a ______ language.</p>
+
+<input type="radio" name="q1">Low level<br>
+<input type="radio" name="q1" id="correct">Object Oriented<br>
+<input type="radio" name="q1">Machine language<br>
+
+<br>
+
+<button onclick="checkMock()">Submit</button>
+
+<p id="mockResult"></p>
+
+</div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="section">
+
+<h2>Quick Quiz</h2>
+
+<div class="card">
+
+<p>HTML stands for?</p>
+
+<button class="quiz-option" onclick="quizAnswer(false)">Hyper Trainer Marking Language</button>
+<button class="quiz-option" onclick="quizAnswer(true)">Hyper Text Markup Language</button>
+<button class="quiz-option" onclick="quizAnswer(false)">Hyper Text Marketing Language</button>
+
+<p id="quizResult"></p>
+
+</div>
+
+</div>
+
+<!-- CLASSES -->
+<div id="classes" class="section">
+
+<h2>Recorded Classes</h2>
+
+<div class="card">
+<p>Java OOP Concepts</p>
+<video width="300" controls>
+<source src="" type="video/mp4">
+</video>
+</div>
+
+<div class="card">
+<p>Modern Physics Lecture</p>
+<video width="300" controls>
+<source src="" type="video/mp4">
+</video>
+</div>
+
+</div>
+
+<script>
+
+function showSection(id){
+
+var sections=document.querySelectorAll(".section");
+
+sections.forEach(sec=>{
+sec.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+
+}
+
+function login(){
+
+var user=document.getElementById("username").value;
+var pass=document.getElementById("password").value;
+
+if(user=="student" && pass=="1234"){
+document.getElementById("loginMsg").innerHTML="Login Successful";
+}
+else{
+document.getElementById("loginMsg").innerHTML="Invalid Login";
+}
+
+}
+
+function checkMock(){
+
+var correct=document.getElementById("correct");
+
+if(correct.checked){
+document.getElementById("mockResult").innerHTML="Correct Answer!";
+}
+else{
+document.getElementById("mockResult").innerHTML="Wrong Answer";
+}
+
+}
+
+function quizAnswer(ans){
+
+if(ans){
+document.getElementById("quizResult").innerHTML="Correct!";
+}
+else{
+document.getElementById("quizResult").innerHTML="Wrong Answer!";
+}
+
+}
+
+</script>
+
+</body>
+</html>
